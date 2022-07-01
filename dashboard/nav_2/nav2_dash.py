@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 import pandas as pd
 from .side_1.index import side1_demo
 from .side_2.index import side2_demo
+from dashboard.config import URL_PREFIX
 
 WIDGET_ID = 'nav2_'
 
@@ -26,15 +27,16 @@ LAYOUT_STYLE = {
     "min-height": "93vh"
 }
 
+
 def get_nav2(app):
 
     sidebar = dbc.Nav(
         [
             dbc.NavLink("Side_1",
-                        href="/nav_2/side_1", active="exact"),
+                        href=f"{URL_PREFIX}/nav_2/side_1", active="exact"),
             dbc.NavLink("Side_2",
-                        href="/nav_2/side_2", active="exact"),
-            
+                        href=f"{URL_PREFIX}/nav_2/side_2", active="exact"),
+
         ],
         vertical=True,
         pills=True,
@@ -46,18 +48,15 @@ def get_nav2(app):
     layout = html.Div([sidebar, content], style=LAYOUT_STYLE)
     s1 = side1_demo(app)
     s2 = side2_demo(app)
+
     @app.callback(Output(f"{WIDGET_ID}page-content", "children"), [Input("url", "pathname")])
     def render_page_content(pathname):
-        if pathname == "/nav_2/side_1":
+        if pathname == f"{URL_PREFIX}/nav_2/side_1":
             return s1
-        elif pathname == "/nav_2/side_2":
+        elif pathname == f"{URL_PREFIX}/nav_2/side_2":
             return s2
-   
+
         else:
             return 'No result'
-        
 
     return layout
-
-    
-

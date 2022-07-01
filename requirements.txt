@@ -1,0 +1,14 @@
+dash
+dash-bootstrap-components
+pandas
+dash-auth
+pymysql
+pymongo
+dnspython
+pytz
+flask
+flask-login
+Flask-SQLAlchemy
+oauthlib
+Flask-Assets
+config
