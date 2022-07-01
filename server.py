@@ -17,8 +17,8 @@ def init_app():
     assets.init_app(app)
 
     # Flask Login Stuff
-    app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['SECRET_KEY'] = SECRET_KEY
+    app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 
     db.init_app(app)
 
@@ -41,9 +41,6 @@ def init_app():
     set_user_access_permissions(app)
 
     with app.app_context():
-        # Import parts of our core Flask app
-        import routes
-
         # Import Dash application
         from dashboard.app import create_app
 
